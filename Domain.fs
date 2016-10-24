@@ -12,7 +12,11 @@ let deposit amount account =
 
 let withdraw (amount:decimal) account =
     let newBalance = account.Balance - amount
-    if (newBalance >= 0M) then
-        {account with Balance = newBalance}
-    else
-        account    
+    match newBalance with 
+    |x when x >= 0M -> account
+    |_ -> {account with Balance = newBalance} 
+    
+    // if (newBalance >= 0M) then
+    //     {account with Balance = newBalance}
+    // else
+    //     account    
